@@ -35,16 +35,21 @@ def base():
 
 @app.route('/addAnswer', methods=['GET', 'POST'])
 def answers_post():
-    data = request.json
-    res = MongoAPI("answers").write(data)
-    return Response(response=json.dumps(res),status=200,mimetype='application/json')
+    if request.method=='POST':
+        data = request.json
+        res = MongoAPI("answers").write(data)
+        return Response(response=json.dumps(res),status=200,mimetype='application/json')
+    return "No envio datos, controle"
 
 @app.route('/addPoll', methods=['GET', 'POST'])
 def polls_post():
-    data = request.json
-    res = MongoAPI("polls").write(data)
-    return Response(response=json.dumps(res),status=200,mimetype='application/json')    
-
+    if request.method=='POST':
+        data = request.json
+        res = MongoAPI("polls").write(data)
+        return Response(response=json.dumps(res),status=200,mimetype='application/json') 
+    
+    return "No envio datos, controle"
+    
 @app.route('/getPolls')
 def polls_get():
     polls = MongoAPI("polls").read()
