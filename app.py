@@ -34,13 +34,13 @@ app = Flask(__name__)
 def base():
     return "status:up"
 
-@app.route('/addAnswer')
+@app.route('/addAnswer', methods=['GET', 'POST'])
 def answers_post():
     data = request.json
     res = MongoAPI("answers").write(data)
     return Response(response=json.dumps(res),status=200,mimetype='application/json')
 
-@app.route('/addPoll')
+@app.route('/addPoll', methods=['GET', 'POST'])
 def polls_post():
     data = request.json
     res = MongoAPI("polls").write(data)
