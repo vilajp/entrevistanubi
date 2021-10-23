@@ -1,0 +1,26 @@
+Problemas:
+
+1- Cuando se golpean los recursos addPoll y addAnswer sin enviar el json, osea con request GET, da error 
+porque la  variable new_document del metodo write esta del tipo none, se puede agregar una condicion que 
+evalue el  si el request entrante es un GET o un POST y en base a eso decidir que vamos a retornar al 
+navegador.
+
+2- Cuando se golpean los recursos addPoll y addAnswer con un request POST enviando un json con informacion,
+da error 405 de metodo no permitido, porque falta un parametro en la declaracion del recurso aclarando que
+acepta request POST.
+
+3- No se puede elegir una Poll para contestar, la idea seria elegir una Poll del listado generado por el 
+recurso (getPolls) y al elegir la Poll, utilizar el metodo find_byid para traer la Poll y crear un formulario
+para escribir la respuesta, de alli tomar el _id de la Poll y ponerlo en el json junto con la respuesta que se escribio en el formulario y guardar la nueva respuesta con el recurso addAnswer. Para esta situacion se debera renderizar en el html cada Poll dentro un tag <a> 
+para utilizar el href que generara el formulario y el espacio para la respuesta.
+
+3- Existen dos importaciones identicas de Flask y sus dependencias.
+
+
+Sugerencias:
+
+- En el html se podra crear un link para agregar nuevas Polls(preguntas) que llevara un form donde se escribira la nueva pregunta. Con el request POST se pasara al recurso addPoll donde se armara el Json para que se grabe la nueva pregunta mediante el metodo write de la clase MOngoApi.
+
+
+
+
