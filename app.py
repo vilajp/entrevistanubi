@@ -1,5 +1,4 @@
 from flask import Flask, request, json, Response
-from flask import Flask, request, json, Response
 from pymongo import MongoClient
 import datetime
 from bson import ObjectId
